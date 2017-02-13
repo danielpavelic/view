@@ -8,7 +8,7 @@ class DropZone extends React.Component {
     }
 
     onDrop(files) {
-      console.log('Received files: ', files);
+      //console.log('Received files: ', files);
 
       /*var req = request.post('http://localhost:3003/api/v1/catalogs/');
         acceptedFiles.forEach((file)=> {
@@ -23,7 +23,7 @@ class DropZone extends React.Component {
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
             
-            formData.append('path', file, file.name);
+            formData.append('images', file, file.name);
             formData.append('sortOrder', i);
         }
         
@@ -46,7 +46,7 @@ class DropZone extends React.Component {
          console.log('formData: ' + JSON.stringify(formData));
 
         request.post('http://localhost:3003/api/v1/catalogs/')
-                //.set('Content-Type', 'application/json')
+                //.set('Content-Type', 'multipart/form-data')
                 //.send(data)
                 .send(formData)
                 //.attach(files[0])
@@ -64,7 +64,7 @@ class DropZone extends React.Component {
 
     render(){
         return(
-            <Drop onDrop={this.onDrop} className="dropContainer">
+            <Drop onDrop={this.onDrop} className="dropContainer" name="images">
               <div>Drop images here or click to select files for upload.</div>
             </Drop>
         );
