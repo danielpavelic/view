@@ -8,54 +8,32 @@ class DropZone extends React.Component {
     }
 
     onDrop(files) {
-      //console.log('Received files: ', files);
-
-      /*var req = request.post('http://localhost:3003/api/v1/catalogs/');
-        acceptedFiles.forEach((file)=> {
-            req.attach(file.name, file);
-        });*/
         
+        
+
+
         var formData = new FormData();
-
-        formData.append('name', 'someName');
-        formData.append('userId', 'someUserId');
-        
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            
-            formData.append('images', file, file.name);
-            formData.append('sortOrder', i);
+        for(let i = 0; i < files.length; i++){
+            formData.append('images', files[i]);
         }
-        
 
-        /*var imagesArray = [];
-        files.forEach((file, index)=> {
-            imagesArray.push({
-                sortOrder: index,
-                path: file.name,
-                file: file
-            });
-        });
-
-        var data = {
-            name: 'attached title 1',
-            userId: 'someUserId',
-            image: imagesArray
-        };*/
-        
-         console.log('formData: ' + JSON.stringify(formData));
+        console.log(JSON.stringify(formData));
 
         request.post('http://localhost:3003/api/v1/catalogs/')
-                //.set('Content-Type', 'multipart/form-data')
-                //.send(data)
-                .send(formData)
-                //.attach(files[0])
+               //.set('Content-Type', 'multipart/form-data')
+               .send(formData)
                 .end(function(err, res){
                     if(err) console.log(err);
                     console.log(JSON.stringify(res));
                 });
-        
 
+                //
+                //.send(data)
+                
+                //.attach(files[0])
+                
+        
+               
         
         
 
@@ -73,4 +51,4 @@ class DropZone extends React.Component {
 
     
 }
-module.exports = DropZone;
+export default DropZone;
